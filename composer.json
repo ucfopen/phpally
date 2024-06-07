@@ -23,7 +23,7 @@
         "php": ">=7.4",
         "guzzlehttp/guzzle": "^7.5.0",
         "kaltura/api-client-library": "^17.2",
-        "ucfopen/isitdescriptive": "dev-main"
+        "taheralfayad/isitdescriptive": "dev-main"
     },
     "scripts": {
         "test": "./vendor/bin/phpunit tests --verbose"
