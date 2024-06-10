@@ -3,6 +3,7 @@
 namespace CidiLabs\PhpAlly\Rule;
 
 use DOMElement;
+use Taheralfayad\IsItDescriptive\DescriptivenessModel;
 
 /**
 *  Suspicious link text.
@@ -22,9 +23,15 @@ class AnchorSuspiciousLinkText extends BaseRule
 
     public function check()
     {
+        $model = new DescriptivenessModel();
         foreach ($this->getAllElements('a') as $a) {
-            if ((in_array(strtolower(trim($a->nodeValue)), $this->translation()) || $a->nodeValue == $a->getAttribute('href')) && $a->getAttribute('href') != "")
-				$this->setIssue($a);
+            if ($this->translation() == 'es'){
+                if((in_array(strtolower(trim($a->nodeValue)), $this->translation()) || $a->nodeValue == $a->getAttribute('href')) && $a->getAttribute('href') != "") {
+                    $this->setIssue($a);
+                }
+            }
+            else if (isset($a->nodeValue) && $model->isDescriptive($a->nodeValue) == "1")
+                $this->setIssue($a);
             $this->totalTests++;
         }
 
