@@ -15,8 +15,8 @@
     ],
     "repositories": [
         {
-            "type": "git",
-            "url": "https://github.com/taheralfayad/isitdescriptive.git"
+            "type": "vcs",
+            "url": "https://github.com/taheralfayad/isitdescriptive"
         }
     ],
     "require": {
