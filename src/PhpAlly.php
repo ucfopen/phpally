@@ -2,7 +2,7 @@
 
 namespace CidiLabs\PhpAlly;
 
-use DOMDocument;
+use Dom\HTMLDocument;
 
 $linkArray = [];
 
@@ -50,11 +50,11 @@ class PhpAlly {
 
     public function getDomDocument($html)
     {
-        $dom = new DOMDocument('1.0', 'utf-8');
+        $dom = '';
         if (strpos($html, '<?xml encoding="utf-8"') !== false) {
-            $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom = HTMLDocument::createFromString($html, LIBXML_HTML_NOIMPLIED | LIBXML_NOERROR);
         } else {
-            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom = HTMLDocument::createFromString('<?xml encoding="utf-8" ?>' . $html, LIBXML_HTML_NOIMPLIED | LIBXML_NOERROR);
         }
 
         return $dom;
